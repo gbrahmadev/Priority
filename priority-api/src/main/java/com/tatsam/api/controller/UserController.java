@@ -31,7 +31,7 @@ public class UserController {
     @RequestMapping(method = RequestMethod.POST,path = "/{id}",
             produces = "application/json;charset=UTF-8",consumes = "application/json;charset=UTF-8")
     public ResponseEntity<String> setUserRating(@PathVariable("id") final String id,
-                                                @RequestBody final List<UserRatingRequest> userRatingRequests) {
+                                @RequestBody final List<UserRatingRequest> userRatingRequests) {
 
         UserEntity userEntity = userService.getUserById(id);
         boolean flag = true;
@@ -43,15 +43,13 @@ public class UserController {
             }
         }
 
-
-
-
         if(flag){
             userRatingRequests.forEach((indvRating)->{
                 userRatingService.addUserRating(indvRating.getUserId(),indvRating.getPriorityId(),
                         indvRating.getRating());
             });
-            return new ResponseEntity<>("User ratings have been saved successfully",HttpStatus.OK);
+            return new ResponseEntity<>("User ratings have been saved successfully",
+                    HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Something wrong in the provided data",
                     HttpStatus.UNPROCESSABLE_ENTITY);

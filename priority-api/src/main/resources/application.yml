@@ -1,0 +1,21 @@
+server:
+  servlet:
+    port: 8080
+    contextPath: /api
+
+spring:
+
+  application:
+    name: priority-api
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/priority
+    username: root
+    password: root
+
+  jpa:
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+    database-platform: org.hibernate.dialect.MySQL8Dialect

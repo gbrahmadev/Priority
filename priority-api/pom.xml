@@ -29,12 +29,6 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
-    <dependency>
-      <groupId>com.tatsam.priority</groupId>
-      <artifactId>priority-service</artifactId>
-      <version>1.0</version>
-      <scope>compile</scope>
-    </dependency>
 
     <dependency>
       <groupId>org.projectlombok</groupId>
@@ -61,6 +55,16 @@
     </profile>
   </profiles>
 
-
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <mainClass>com/tatsam/api/PriorityApplciation.java</mainClass>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>

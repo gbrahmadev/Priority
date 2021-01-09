@@ -1,0 +1,38 @@
+package com.tatsam.service.entity;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import javax.validation.constraints.Size;
+import java.util.List;
+import java.util.Objects;
+
+@Data
+@NoArgsConstructor
+@Entity
+@Table(name = "PRIORITY_AREAS",schema = "priority")
+public class PriorityEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
+    private String id;
+
+    @Column(name = "PRIORITY_NAME")
+    @Size(max = 255)
+    private String priorityName;
+
+    @OneToMany(mappedBy = "PRIORITY_AREAS")
+    private List<UserRatingEntity> userRatingEntities ;
+
+
+
+    public PriorityEntity(@Size(max = 255) String priorityName, List<UserRatingEntity> userRatingEntities) {
+        this.priorityName = priorityName;
+        for (UserRatingEntity ure: userRatingEntities
+             ) {
+            this.userRatingEntities.add(ure);
+        }
+    }
+}
